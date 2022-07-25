@@ -43,8 +43,18 @@ $mass_lots = [
         "img_lot" => "img/lot-6.jpg"
     ]
 ];
-$index_mass_cat = 0;
-$num_el_mass_cat = count($mass_cat);
+
+function format_price($price)
+{
+    $ceil_price = ceil($price);
+    if ($ceil_price < 1000) {
+        return $ceil_price;
+    } else {
+        $format_price = number_format($ceil_price, 0, ',', ' ');
+        $format_price .= "<b class='rub'>р</b>";
+        return $format_price;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -133,7 +143,7 @@ $num_el_mass_cat = count($mass_cat);
                             <div class="lot__state">
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
-                                    <span class="lot__cost"><?= $lots_item['price_lot']; ?><b class="rub">р</b></span>
+                                    <span class="lot__cost"><?= format_price($lots_item['price_lot']); ?></span>
                                 </div>
                                 <div class="lot__timer timer">
 
