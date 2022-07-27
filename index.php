@@ -55,6 +55,15 @@ function format_price($price)
         return $format_price;
     }
 }
+
+date_default_timezone_set("Europe/Moscow");
+$time_now = time();
+$time_tomorrow = strtotime('tomorrow');
+$to_midnight = $time_tomorrow - $time_now;
+
+$hours = floor($to_midnight / 3600);
+$minutes = floor(($to_midnight % 3600) / 60);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -146,7 +155,7 @@ function format_price($price)
                                     <span class="lot__cost"><?= format_price($lots_item['price_lot']); ?></span>
                                 </div>
                                 <div class="lot__timer timer">
-
+                                    <?= $hours; ?> : <?= $minutes; ?>
                                 </div>
                             </div>
                         </div>
